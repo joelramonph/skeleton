@@ -1,5 +1,5 @@
 const express = require('express')
-const {port} = require('./config');
+const {port} = require('./config'); //Es agregada una vez configurado el archivo
 
 const app = express()
 
