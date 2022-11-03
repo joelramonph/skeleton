@@ -30,13 +30,28 @@ router.route('/me')
         passport.authenticate('jwt', {session: false}),
         userServices.getMyUser)
     //.patch()
+    .patch(
+        passport.authenticate('jwt', {session: false}),
+        userServices.patchMyUser
+    )
     //.delete()
-
+    .delete(
+        passport.authenticate('jwt', {session: false}),
+        userServices.deleteMyUser
+    )
 //? /api/v1/users/:id
 router.route('/:id')
     .get(userServices.getUserById)
-    .patch(userServices.patchUser)
-    .delete(userServices.deleteUser)
+    .patch(
+        passport.authenticate('jwt', {session: false}),
+        adminValidate,
+        userServices.patchUser
+    )
+    .delete(
+        passport.authenticate('jwt', {session: false}),
+        adminValidate,
+        userServices.deleteUser
+    )
 
 
 
